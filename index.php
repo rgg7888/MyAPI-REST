@@ -11,7 +11,7 @@ html("Les",[
         lk("Hhttps://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@300;500&display=swap Rstylesheet"),
         //replace the path word with your favicon url
         cls(lk("Rshortcut_icon Hpath")),
-        title(null,"Estructura basica"),
+        title(null,"API REST"),
         style("Istyle")
     ]),
     body("OloadDoc()",[
