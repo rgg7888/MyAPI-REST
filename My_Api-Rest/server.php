@@ -1,4 +1,44 @@
 <?php
+
+/*user y password harcodeado
+
+mecanismo HTTP OUT
+
+$user = array_key_exists('PHP_AUTH_USER', $_SERVER) ? $_SERVER['PHP_AUTH_USER'] : '';
+$password = array_key_exists('PHP_AUTH_PW', $_SERVER) ? $_SERVER['PHP_AUTH_PW'] : '';
+
+if($user !== 'rami' || $password !== '1234') {
+    die;
+}
+*/
+
+
+//mecanismo HMAC, mas seguro
+
+if(
+    !array_key_exists('HTTP_X_HASH', $_SERVER) ||
+    !array_key_exists('HTTP_X_TIMESTAMP', $_SERVER) ||
+    !array_key_exists('HTTP_X_UID', $_SERVER)
+){
+    echo "no hay encabezado de autenticacion\n";
+    die;
+}
+
+list($hash, $uid, $timestamp) = [
+    $_SERVER['HTTP_X_HASH'],
+    $_SERVER['HTTP_X_UID'],
+    $_SERVER['HTTP_X_TIMESTAMP']
+];
+
+$secret = 'Sh!! No se lo cuentes a nadie!';
+
+$newHash = sha1($uid.$timestamp.$secret);
+
+if($newHash !== $hash) {
+    echo "el hash no coincide\n";
+    die;
+}
+
 #definimos los recursos disponibles
 $allowedResourceTypes = [
     'books',
