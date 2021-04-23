@@ -26,7 +26,7 @@ echo implode("",
         #
         #Main
             //your code here
-            sltr("#messages",[
+            sltr("#messages, #bookForm",[
                 "9none"
             ])
         #

@@ -13,9 +13,9 @@ html("Les",[
         //replace the path word with your favicon url
         cls(lk("Rshortcut_icon Hpath")),
         title(null,"API REST"),
-        #style("Istyle")
+        style("Istyle")
     ]),
-    body(null,[#replace null for OloadDoc() in case you need it
+    body("OloadDoc()",[#replace null for OloadDoc() in case you need it
         hdr(null,"API REST EXAMPLE"),
         main(null,[
             table("IbooksTable Ctable",[
@@ -28,8 +28,9 @@ html("Les",[
                 ]),
                 tbody(),
                 cls(input("Tbutton VCargar_libros IloadBooks")),
-                cls(div("Imessages Sdisplay:_none;",p())),
-                cls(div("Sdisplay:_none; IbookForm",[
+                div("Imessages",p()),
+                div("IbookForm",[
+                    hr(),
                     table(null,[
                         tr(null,[
                             td(null,"Titulo:"),
@@ -47,10 +48,11 @@ html("Les",[
                             td("C2",input("Tbutton VGuardar IbookSave"))
                         ])
                     ])
-                ]))
+                ])
             ])
         ]),
         footer(null,"FOOTER"),
+        script(null,changeContentOf("style","styles.php")),
         script("Shttps://code.jquery.com/jquery-3.6.0.min.js Isha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4= Canonymous"/*,changeContentOf("style","styles.php")*/),
         script("Shttps://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js Isha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf Canonymous"),
         script("Ttext/javascript",[
@@ -83,7 +85,7 @@ html("Les",[
                 $('#messages').first('p').text('Guardando libro...');
                 $('#messages').show();
                 $.ajax({
-                    'url': 'http://localhost:8000/books',
+                    'url': window.location.href + (window.location.href.substr(window.location.href.lenght - 1) == '/' ? '' : '/') + 'books',
                     'method': 'POST',
                     'data': JSON.stringify(newBook),
                     'success': function(data){
