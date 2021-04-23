@@ -30,7 +30,6 @@ html("Les",[
                 cls(input("Tbutton VCargar_libros IloadBooks")),
                 cls(div("Imessages Sdisplay:_none;",p())),
                 cls(div("Sdisplay:_none; IbookForm",[
-                    "<hr/>",
                     table(null,[
                         tr(null,[
                             td(null,"Titulo:"),
