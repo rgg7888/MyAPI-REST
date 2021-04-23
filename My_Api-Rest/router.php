@@ -2,6 +2,15 @@
 
 $matches = [];
 
+//exception
+if(in_array($_SERVER["REQUEST_URI"], ['/index.php','/', ''])) {
+    echo file_get_contents('index.php');
+    die;
+}else if(in_array($_SERVER["REQUEST_URI"], ['/index.html','/', ''])){
+    echo file_get_contents('index.html');
+    die;
+}
+
 if(preg_match('/\/([^\/]+)\/([^\/]+)/', 
 $_SERVER['REQUEST_URI'], $matches)) {
     $_GET['resource_type'] = $matches[1];
