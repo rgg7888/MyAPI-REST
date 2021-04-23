@@ -52,7 +52,47 @@ html("Les",[
             ])
         ]),
         footer(null,"FOOTER"),
-        #script(null,changeContentOf("style","styles.php")),
-        script("Shttps://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js Isha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf Canonymous")
+        script("Shttps://code.jquery.com/jquery-3.6.0.min.js Isha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4= Canonymous"/*,changeContentOf("style","styles.php")*/),
+        script("Shttps://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js Isha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf Canonymous"),
+        script("Ttext/javascript",[
+            "$('#loadBooks').click(function(){
+                $('#messages').first('p').text('Cargando libros...');
+                $('#messages').show();
+                $.ajax(
+                    {
+                        'url': 'http://localhost:8000/books',
+                        'success': function(data){
+                            $('#messages').hide();
+                            $('#booksTable > tbody').empty();
+                            for(b in data){
+                                addBook(data[b]);
+                            }
+                            $('#bookForm').show();
+                        }
+                    }
+                );
+            });",
+            "function addBook(book){
+                $('#booksTable tr:last').after('<tr><td>' + book.titulo + '</td><td>' + book.id_autor + '</td><td>' + book.id_genero + '</td></tr>');
+            }",
+            "$('#bookSave').click(function() {
+                var newBook = {
+                    'titulo': $('#bookTitle').val(),
+                    'id_autor': $('#bookAutorId').val(),
+                    'id_genero': $('#bookGeneroId').val()
+                }
+                $('#messages').first('p').text('Guardando libro...');
+                $('#messages').show();
+                $.ajax({
+                    'url': 'http://localhost:8000/books',
+                    'method': 'POST',
+                    'data': JSON.stringify(newBook),
+                    'success': function(data){
+                        $('#messages').hide();
+                        addBook(newBook);
+                    }
+                });
+            });"
+        ])
     ])
 ]);
