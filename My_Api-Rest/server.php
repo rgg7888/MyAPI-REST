@@ -59,7 +59,7 @@
     curl http://localhost:8001 -X 'POST' -H 'X-Client-Id: 1' -H 'X-Secret: SuperSecreto!'
     curl http://localhost:8000/books -H 'X-Token: c4b02a1525349e7888d4140dcd524aff2d6296dd'
 
-*/
+
     if(!array_key_exists('HTTP_X_TOKEN', $_SERVER)) {
         die;
     }
@@ -83,7 +83,7 @@
         echo "error de autenticacion\n";
         die;
     }
-#
+*/
 
 #definimos los recursos disponibles
 $allowedResourceTypes = [
@@ -95,6 +95,7 @@ $allowedResourceTypes = [
 #validamos que el recurso este disponible
 $resourceType = $_GET['resource_type'];
 if(!in_array($resourceType, $allowedResourceTypes)) {
+    http_response_code(400);
     die;
 }
 
@@ -130,6 +131,8 @@ switch(strtoupper($_SERVER['REQUEST_METHOD'])) {
         }else{
             if(array_key_exists($resourceId, $books)) {
                 echo json_encode($books[$resourceId]);
+            }else{
+                http_response_code(404);
             }
         }
         break;
