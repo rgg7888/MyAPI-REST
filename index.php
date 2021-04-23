@@ -13,9 +13,9 @@ html("Les",[
         //replace the path word with your favicon url
         cls(lk("Rshortcut_icon Hpath")),
         title(null,"API REST"),
-        style("Istyle")
+        #style("Istyle")
     ]),
-    body("OloadDoc()",[
+    body(null,[#replace null for OloadDoc() in case you need it
         hdr(null,"API REST EXAMPLE"),
         main(null,[
             table("IbooksTable Ctable",[
@@ -28,7 +28,7 @@ html("Les",[
                 ]),
                 tbody(),
                 cls(input("Tbutton VCargar_libros IloadBooks")),
-                div("Imessages",p()),
+                cls(div("Imessages Sdisplay:_none;",p())),
                 cls(div("Sdisplay:_none; IbookForm",[
                     "<hr/>",
                     table(null,[
@@ -52,7 +52,7 @@ html("Les",[
             ])
         ]),
         footer(null,"FOOTER"),
-        script(null,changeContentOf("style","styles.php")),
+        #script(null,changeContentOf("style","styles.php")),
         script("Shttps://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js Isha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf Canonymous")
     ])
 ]);
